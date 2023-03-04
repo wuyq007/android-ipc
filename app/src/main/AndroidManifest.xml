@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Android 11 开始，访问其他应用需要 加上 queries 或者 QUERY_ALL_PACKAGES权限-->
+    <!-- QUERY_ALL_PACKAGES权限 加上后如果上架，需要提供该权限使用的必要说明-->
+    <queries>
+        <package android:name="com.example.kotlin.process.ipc.aidl" />
+    </queries>
+
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Android_ipc"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+
+        <!--   Binder    -->
+        <activity android:name=".binder.BinderActivity" />
+        <service
+            android:name=".binder.BinderService"
+            android:enabled="true"
+            android:exported="true"
+            />
+        <!--   Binder    -->
+
+
+        <!--   Content Provider    -->
+        <activity android:name=".provider.ContentProviderActivity" />
+
+        <activity
+            android:name=".provider.ContentProviderNewProcessActivity"
+            android:exported="true"
+            android:process=":content.provider" />
+
+        <provider
+            android:name=".provider.IPCContentProvider"
+            android:authorities="com.ipc.process.contentProvider"
+            android:exported="true" />
+        <!--   Content Provider    -->
+
+
+        <!--   Messenger    -->
+        <activity android:name=".messenger.MessengerActivity" />
+        <service
+            android:name=".messenger.MessengerService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":messenger" />
+        <!--   Messenger    -->
+
+
+        <!--   AIDL    -->
+        <activity android:name=".aidl.AidlActivity" />
+        <!--   AIDL    -->
+
+
+    </application>
+
+</manifest>
