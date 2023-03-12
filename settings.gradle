@@ -12,6 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "android_ipc"
+rootProject.name = "android-ipc"
 include ':app'
 include ':aidl-service'
